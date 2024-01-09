@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.Errors
 import org.springframework.web.bind.annotation.*
+import java.util.*
 import java.util.stream.Collectors
 
 
@@ -34,7 +35,7 @@ class DesignTacoController {
         val types: Array<Type> = Ingredient.Type.entries.toTypedArray()
         for (type in types) {
             model.addAttribute(
-                type.toString().toLowerCase(),
+                type.toString().lowercase(Locale.getDefault()),
                 filterByType(ingredients, type)
             )
         }

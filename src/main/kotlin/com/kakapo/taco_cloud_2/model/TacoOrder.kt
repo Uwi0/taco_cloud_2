@@ -4,8 +4,11 @@ import jakarta.validation.constraints.Digits
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
 import org.hibernate.validator.constraints.CreditCardNumber
+import java.util.Date
 
 data class TacoOrder(
+    val id: Long = 0,
+    val placedAt: Date,
     @NotBlank(message = "Delivery name is required")
     val deliveryName: String = "",
     @NotBlank(message = "Street is required")
@@ -27,5 +30,9 @@ data class TacoOrder(
 ) {
     fun addTaco(taco: Taco) {
         tacos.add(taco)
+    }
+
+    companion object{
+        const val SERIAL_VERSION_UID = 1L
     }
 }
